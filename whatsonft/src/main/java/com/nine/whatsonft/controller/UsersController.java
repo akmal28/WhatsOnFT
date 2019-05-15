@@ -31,7 +31,8 @@ public class UsersController {
     }
 
     @RequestMapping("/users/{id}")
-    public Users getUser(@PathVariable int id){
+    public Users getUser(@PathVariable int id)
+    {
         try {
             return db.getUsers(id);
         } catch (SQLException e) {
@@ -50,5 +51,16 @@ public class UsersController {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @RequestMapping(value = "/users/delete", method = RequestMethod.DELETE)
+    public boolean deleteUser(@RequestParam(value = "id") int id)
+    {
+        try {
+            return db.deleteUser(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

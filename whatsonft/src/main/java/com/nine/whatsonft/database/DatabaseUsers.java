@@ -48,9 +48,9 @@ public class DatabaseUsers extends DbConnection {
     }
 
     public boolean deleteUser(int id) throws SQLException{
-        PreparedStatement posted = conn.prepareStatement("DELETE FROM user WHERE id = (?)");
+        PreparedStatement posted = conn.prepareStatement("DELETE FROM users WHERE id = (?)");
         posted.setInt(1, id);
-        posted.executeQuery();
+        posted.executeUpdate();
         return true;
     }
 }
