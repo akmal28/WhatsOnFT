@@ -5,9 +5,24 @@ import com.nine.whatsonft.models.Users;
 
 import java.sql.*;
 
+/**
+ * Class ini berfungsi untuk berinterkasi dengan table user pada database
+ * @author Akmal Ramadhan Arifin
+ * @version 16-05-2019
+ */
 public class DatabaseUsers extends DbConnection {
     private final Connection conn = super.connection();
 
+    /**
+     * Method ini berfungsi untuk membuat user baru
+     * @param name
+     * @param username
+     * @param department
+     * @param email
+     * @param password
+     * @return
+     * @throws SQLException
+     */
     public Users newUser(String name, String username, String department, String email, String password) throws SQLException{
         int id = 0;
         PreparedStatement posted = conn.prepareStatement("INSERT INTO users(name, username, department, email, password) VALUES (?,?,?,?,?) RETURNING id");
@@ -24,6 +39,12 @@ public class DatabaseUsers extends DbConnection {
         return user;
     }
 
+    /**
+     * Method ini berfungsi mendapatkan user dengan ID
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     public Users getUsers(int id) throws SQLException{
         Users user = null;
         PreparedStatement posted = conn.prepareStatement("SELECT * FROM users WHERE id = (?)");
@@ -35,6 +56,13 @@ public class DatabaseUsers extends DbConnection {
         return user;
     }
 
+    /**
+     * Method ini berfungsi untuk user login
+     * @param email
+     * @param password
+     * @return
+     * @throws SQLException
+     */
     public Users loginUser(String email, String password) throws SQLException{
         Users user = null;
         PreparedStatement posted = conn.prepareStatement("SELECT * FROM users WHERE email = (?) AND password = (?)");
@@ -47,6 +75,12 @@ public class DatabaseUsers extends DbConnection {
         return user;
     }
 
+    /**
+     * Method menghapus data user
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     public boolean deleteUser(int id) throws SQLException{
         PreparedStatement posted = conn.prepareStatement("DELETE FROM users WHERE id = (?)");
         posted.setInt(1, id);

@@ -6,9 +6,21 @@ import com.nine.whatsonft.models.Attendant;
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * Class ini berfungsi untuk berinterkasi dengan table pengunjung pada database
+ * @author Akmal Ramadhan Arifin
+ * @version 16-05-2019
+ */
 public class DatabaseAttendant extends DbConnection {
     private final Connection conn = super.connection();
 
+    /**
+     * Method ini berfungsi untuk menambahkan pengunjung baru ke suatu event
+     * @param eventId
+     * @param userID
+     * @return
+     * @throws SQLException
+     */
     public Attendant addAttendant(int eventId, int userID) throws SQLException{
         PreparedStatement posted = conn.prepareStatement("INSERT INTO attendants VALUES (?,?)");
         posted.setInt(1, eventId);
@@ -18,6 +30,12 @@ public class DatabaseAttendant extends DbConnection {
         return attendant;
     }
 
+    /**
+     * Method ini berfungsi untuk mendapatkan daftar pengunjung suatu event
+     * @param eventId
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<Attendant> getEventAttendant(int eventId) throws SQLException{
         ArrayList<Attendant> attendantList = new ArrayList<>();
         PreparedStatement posted = conn.prepareStatement("SELECT * FROM attendants WHERE event_id = (?)");
@@ -29,6 +47,12 @@ public class DatabaseAttendant extends DbConnection {
         return attendantList;
     }
 
+    /**
+     * Method ini berfungsi untuk mendapatkan seluruh event yang dihadiri oleh user
+     * @param userId
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<Attendant> getUserAttendace(int userId) throws SQLException{
         ArrayList<Attendant> eventList = new ArrayList<>();
         PreparedStatement posted = conn.prepareStatement("SELECT * FROM attendants WHERE user_id = (?)");
@@ -40,6 +64,12 @@ public class DatabaseAttendant extends DbConnection {
         return eventList;
     }
 
+    /**
+     * Method ini berfungsi untuk pembatalan kehadiran user ke suatu event
+     * @param userId
+     * @return
+     * @throws SQLException
+     */
     public boolean removeAttendant(int userId) throws SQLException{
         PreparedStatement posted = conn.prepareStatement("DELETE FROM attendants WHERE user_id = (?)");
         posted.setInt(1, userId);
