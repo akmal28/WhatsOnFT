@@ -7,10 +7,11 @@ import com.nine.whatsonft.enums.OrgCategory;
  * @author Akmal Ramadhan Arifin
  * @version 16-05-2019
  */
-public class Organizations {
+public class Organizations{
     private int id;
     private String name;
     private OrgCategory category;
+    private Users admin;
 
     /**
      * Constructor untuk class Organization
@@ -18,10 +19,11 @@ public class Organizations {
      * @param name
      * @param category
      */
-    public Organizations(int id, String name, OrgCategory category) {
+    public Organizations(int id, String name, OrgCategory category, Users admin) {
         this.id = id;
         this.name = name;
         this.category = category;
+        this.admin = admin;
     }
 
     /**
@@ -70,5 +72,13 @@ public class Organizations {
      */
     public void setCategory(OrgCategory category) {
         this.category = category;
+    }
+
+    public Users getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Users admin) {
+        this.admin = admin;
     }
 }

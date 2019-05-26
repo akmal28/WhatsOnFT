@@ -53,7 +53,7 @@ public class DatabaseAttendant extends DbConnection {
      * @return
      * @throws SQLException
      */
-    public ArrayList<Attendant> getUserAttendace(int userId) throws SQLException{
+    public ArrayList<Attendant> getUserAttendance(int userId) throws SQLException{
         ArrayList<Attendant> eventList = new ArrayList<>();
         PreparedStatement posted = conn.prepareStatement("SELECT * FROM attendants WHERE user_id = (?)");
         posted.setInt(1, userId);

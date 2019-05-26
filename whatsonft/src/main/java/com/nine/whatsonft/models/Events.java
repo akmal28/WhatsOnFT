@@ -1,5 +1,6 @@
 package com.nine.whatsonft.models;
 
+import com.nine.whatsonft.enums.EventType;
 import com.nine.whatsonft.models.Organizations;
 
 import java.text.SimpleDateFormat;
@@ -16,7 +17,11 @@ public abstract class Events {
     private String name;
     private Organizations organization;
     private String description;
-    private Calendar date;
+    private String date;
+    private Calendar date2;
+
+    public Events() {
+    }
 
     /**
      * Constructor untuk class Event
@@ -26,7 +31,7 @@ public abstract class Events {
      * @param description
      * @param date
      */
-    public Events(int id, String name, Organizations organization, String description, Calendar date) {
+    public Events(int id, String name, Organizations organization, String description, String date) {
         this.id = id;
         this.name = name;
         this.organization = organization;
@@ -49,7 +54,7 @@ public abstract class Events {
         this.name = name;
         this.organization = organization;
         this.description = description;
-        this.date = new GregorianCalendar(year, month, dayOfMonth);
+        this.date2 = new GregorianCalendar(year, month, dayOfMonth);
     }
 
     /**
@@ -120,7 +125,7 @@ public abstract class Events {
      * Method getter untuk mendapatkan tanggal event
      * @return
      */
-    public Calendar getDate() {
+    public String getDate() {
         SimpleDateFormat format = new SimpleDateFormat("dd/M/yyyy");
         return date;
     }
@@ -134,4 +139,6 @@ public abstract class Events {
     public void setDate(int dayOfMonth, int month, int year) {
         GregorianCalendar date = new GregorianCalendar(year, month, dayOfMonth);
     }
+
+    public abstract EventType getEventType();
 }

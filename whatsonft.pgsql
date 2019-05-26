@@ -91,7 +91,8 @@ ALTER SEQUENCE public.events_id_seq OWNED BY public.events.id;
 CREATE TABLE public.organizations (
     id integer NOT NULL,
     name character varying(50) NOT NULL,
-    category text NOT NULL
+    category text NOT NULL,
+    admin_id integer NOT NULL
 );
 
 
@@ -191,6 +192,7 @@ COPY public.attendants (event_id, user_id) FROM stdin;
 --
 
 COPY public.events (id, name, org_id, type, category, description, date) FROM stdin;
+1	Grand Launching	1	NonAcademic	Others	Peresmian kepengurusan baru	10-10-2019
 \.
 
 
@@ -198,7 +200,8 @@ COPY public.events (id, name, org_id, type, category, description, date) FROM st
 -- Data for Name: organizations; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.organizations (id, name, category) FROM stdin;
+COPY public.organizations (id, name, category, admin_id) FROM stdin;
+1	Ikatan Mahasiswa Elektro	IMD	1
 \.
 
 
@@ -207,10 +210,7 @@ COPY public.organizations (id, name, category) FROM stdin;
 --
 
 COPY public.users (id, name, username, department, email, password) FROM stdin;
-1	Haqy	heyhaqy	DTE	haqy@gmail.com	Haqy123
-4	Pascal	heypascal	DTE	pascal@gmail.com	Pascal123
-6	Akmal	heyakmal	DTE	akmal@gmail.com	Akmal123
-7	Frenzel	frenzel	DTE	frenzel@gmail.com	Frenzel123
+1	IME FTUI	imeftui	DTE	imeftui@gmail.com	IMEFTUI2019
 \.
 
 
@@ -218,21 +218,21 @@ COPY public.users (id, name, username, department, email, password) FROM stdin;
 -- Name: events_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.events_id_seq', 1, false);
+SELECT pg_catalog.setval('public.events_id_seq', 1, true);
 
 
 --
 -- Name: organizations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.organizations_id_seq', 1, false);
+SELECT pg_catalog.setval('public.organizations_id_seq', 1, true);
 
 
 --
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 7, true);
+SELECT pg_catalog.setval('public.users_id_seq', 1, true);
 
 
 --
@@ -289,6 +289,14 @@ ALTER TABLE ONLY public.attendants
 
 ALTER TABLE ONLY public.events
     ADD CONSTRAINT events_org_id_fkey FOREIGN KEY (org_id) REFERENCES public.organizations(id);
+
+
+--
+-- Name: organizations organizations_admin_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.organizations
+    ADD CONSTRAINT organizations_admin_id_fkey FOREIGN KEY (admin_id) REFERENCES public.users(id);
 
 
 --

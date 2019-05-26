@@ -11,6 +11,7 @@ import java.sql.SQLException;
  * @author Akmal Ramadhan Arifin
  * @version 16-05-2019
  */
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class UsersController {
     private DatabaseUsers db = new DatabaseUsers();

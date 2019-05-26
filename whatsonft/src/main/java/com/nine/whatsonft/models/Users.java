@@ -33,6 +33,11 @@ public class Users {
         this.password = password;
     }
 
+    public Users(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
     /**
      * Method getter untuk mendapatkan ID user
      * @return  id

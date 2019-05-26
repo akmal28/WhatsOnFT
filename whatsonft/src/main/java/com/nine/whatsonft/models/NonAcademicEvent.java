@@ -13,7 +13,7 @@ import java.util.Calendar;
  * @version 16-05-2019
  */
 public class NonAcademicEvent extends Events {
-    final private EventType type = EventType.NonAcademic;
+    private EventType eventType = EventType.NonAcademic;
     private NonAcadEventCategory category;
 
     /**
@@ -25,7 +25,7 @@ public class NonAcademicEvent extends Events {
      * @param category
      * @param date
      */
-    public NonAcademicEvent(int id, String name, Organizations organization, String description, NonAcadEventCategory category, Calendar date) {
+    public NonAcademicEvent(int id, String name, Organizations organization, String description, NonAcadEventCategory category, String date) {
         super(id, name, organization, description, date);
         this.category = category;
     }
@@ -50,8 +50,8 @@ public class NonAcademicEvent extends Events {
      * Method getter untuk mendapatkan tipe event
      * @return
      */
-    public EventType getType() {
-        return type;
+    public EventType getEventType() {
+        return eventType;
     }
 
     /**
