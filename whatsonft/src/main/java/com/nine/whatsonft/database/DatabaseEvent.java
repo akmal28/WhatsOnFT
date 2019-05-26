@@ -24,7 +24,7 @@ public class DatabaseEvent extends DbConnection {
     private final Connection conn = super.connection();
     private DatabaseOrganizations dbo = new DatabaseOrganizations();
 
-    public Events newEvent(String name, int orgId, String category, String description, String date) throws SQLException {
+    public Events newEvent(String name, int orgId, String type, String category, String description, String date) throws SQLException {
         int id = 0;
         PreparedStatement posted = conn.prepareStatement("insert into events(name, org_id, type, category, description, date) values (?, ?,?,?,?,?) RETURNING id");
         posted.setString(1, name);
@@ -32,7 +32,7 @@ public class DatabaseEvent extends DbConnection {
         posted.setString(4, category);
         posted.setString(5, description);
         posted.setString(6, date);
-        if (category.equals("Academic")){
+        if (type.equals("Academic")){
             posted.setString(3, EventType.Academic.toString());
             ResultSet res = posted.executeQuery();
             while (res.next()){
@@ -109,7 +109,21 @@ public class DatabaseEvent extends DbConnection {
         return eventList;
     }
 
-
+    public ArrayList<Events> getEventsByOrganization(int orgId) throws SQLException{
+        ArrayList<Events> eventList = new ArrayList<>();
+        PreparedStatement posted = conn.prepareStatement("select * from events where org_id = (?)");
+        posted.setInt(1, orgId);
+        ResultSet res = posted.executeQuery();
+        while (res.next()){
+            if (res.getString("type").equals("Academic")){
+                eventList.add(new AcademicEvent(res.getInt("id"), res.getString("name"), dbo.getOrganizationById(res.getInt("org_id")),  res.getString("description"),res.getString("date")));
+            }
+            else {
+                eventList.add(new NonAcademicEvent(res.getInt("id"), res.getString("name"), dbo.getOrganizationById(res.getInt("org_id")), res.getString("description"), NonAcadEventCategory.valueOf(res.getString("category")), res.getString("date")));
+            }
+        }
+        return eventList;
+    }
 
 
 }

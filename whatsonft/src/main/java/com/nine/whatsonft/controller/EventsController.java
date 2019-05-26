@@ -21,12 +21,13 @@ public class EventsController{
     public Events eventRegistration(
             @RequestParam(value = "name") String name,
             @RequestParam(value = "organization") int orgId,
+            @RequestParam(value = "type") String type,
             @RequestParam(value = "category") String category,
             @RequestParam(value = "description") String description,
             @RequestParam(value = "date")String date)
     {
         try {
-            return db.newEvent(name,orgId,category,description, date);
+            return db.newEvent(name,orgId,type,category,description, date);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -45,7 +46,7 @@ public class EventsController{
     }
 
     @RequestMapping ("/events/{id}")
-    public Events getUser(@PathVariable int id)
+    public Events getEventById(@PathVariable int id)
     {
         try {
             return db.getEventsbyId(id);
@@ -59,6 +60,16 @@ public class EventsController{
     public ArrayList<Events> getEvents(){
         try {
             return db.getEvents();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @RequestMapping("/organizations/{id}/events")
+    public ArrayList<Events> getEventsbyOrganization(@PathVariable int id){
+        try {
+            return db.getEventsByOrganization(id);
         } catch (SQLException e) {
             e.printStackTrace();
         }

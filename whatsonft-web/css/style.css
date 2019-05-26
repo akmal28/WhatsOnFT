@@ -1,0 +1,43 @@
+body{
+    font-family: 'Montserrat', sans-serif;
+}
+
+header{
+    background-image: url('../background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+}
+
+.main{
+    text-align: center;
+}
+
+.main h1{
+    font-family: 'Abril Fatface', cursive;
+    font-size: 100px;
+}
+
+.main button{
+    border-radius: 25px;
+    text-transform: uppercase;
+}
+
+.main button:hover{
+    transform: scale(1.05);
+}
+
+.active{
+    font-weight: bold;
+}
+
+.myevents{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.myevents .card{
+    margin-left: 10px;
+    margin-top: 10px;
+    justify-content: center;
+}

@@ -193,6 +193,9 @@ COPY public.attendants (event_id, user_id) FROM stdin;
 
 COPY public.events (id, name, org_id, type, category, description, date) FROM stdin;
 1	Grand Launching	1	NonAcademic	Others	Peresmian kepengurusan baru	10-10-2019
+2	Asistensi	1	Academic		Persiapan ujian akhir semester	10-10-2019
+3	Gladiator	1	NonAcademic	Olahraga	Persiapan DTE menuju Teknik Cup	2019-05-31
+4	Seminar IoT	1	Academic		Seminar mengenai Internet of Things bersama Prof. Marimuthu Palaniswami.	2019-06-05
 \.
 
 
@@ -218,7 +221,7 @@ COPY public.users (id, name, username, department, email, password) FROM stdin;
 -- Name: events_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.events_id_seq', 1, true);
+SELECT pg_catalog.setval('public.events_id_seq', 4, true);
 
 
 --
