@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Welcome to What's on FT !</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="../css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="../css/style.css" rel="stylesheet">
+    <!-- Montserrat Font -->
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Montserrat&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark special-color-dark">
+        <!-- Navbar brand -->
+        <a class="navbar-brand" href="index.html">What's on FT ?</a>
+        <!-- Collapse button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+            aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse" id="basicExampleNav">
+            <!-- Links -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="events.html">Events</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="organizations.html">Organization</a>
+                </li>
+                <!-- Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Profile</a>
+                    <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="#">My Profile</a>
+                        <button class="btn btn-danger" onclick="logOut()">Logout</button>
+                    </div>
+                </li>
+            </ul>
+            <!-- Links -->
+        </div>
+        <!-- Collapsible content -->
+    </nav>
+    <!-- Navbar End -->
+
+    <!-- Content -->
+    <div class="container">
+        <!-- Jumbotron -->
+        <div class="jumbotron text-center">
+            <!-- Title -->
+            <h4 class="card-title h4 pb-2"><strong>What is going on FT ?</strong></h4>
+            <!-- Card image -->
+            <div class="view overlay my-4">
+                <img src="https://www.newstatesman.com/sites/all/themes/creative-responsive-theme/images/new_statesman_events.jpg"
+                    class="img-fluid" alt="">
+                <a href="login.html">
+                    <div class="mask rgba-white-slight"></div>
+                </a>
+            </div>
+            <h5 class="indigo-text h5 mb-4">Photography</h5>
+            <p class="card-text">Sed ut perspiciatis unde omnis iste natus sit voluptatem accusantium doloremque
+                laudantium,
+                totam rem aperiam.</p>
+        </div>
+        <!-- Jumbotron -->
+        <div class="row">
+            <div class="col-md-4">
+                <h2>What is this website ?</h2>
+                <p>This website helps you track every activities that happen on Fakultas Teknik Universitas
+                    Indonesia</p>
+            </div>
+            <div class="col-md-4">
+                <h2>Why use this website ?</h2>
+                <p>This website can help reminds you of every activities that are related to you or those you might
+                    be interested</p>
+            </div>
+            <div class="col-md-4">
+                <h2>How to use this website ?</h2>
+                <p>Simple ! Just register your info and never again lose track on every event !</p>
+            </div>
+        </div>
+        <div style="text-align: center">
+            <h3 style="text-align: center">Login or Register to start viewing events !</h3>
+            <a href="login.html" class="btn btn-primary ml-0">Login</a>
+            <a href="register.html" class="btn btn-amber">Register</a>
+        </div>
+
+    </div>
+    <!-- Content End -->
+
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="../js/jquery-3.4.0.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="../js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="../js/mdb.min.js"></script>
+    <!-- Footer -->
+    <footer class="page-footer font-small special-color-dark sticky-bottom">
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">© 2018 Copyright:
+            <a href="https://MDBootstrap.com/education/bootstrap/">pizdec.tv</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+    <!-- Logout -->
+    <script>
+        function logOut() {
+            localStorage.removeItem("userInfo")
+            alert("Logged Out")
+            window.location.href = "index.html"
+        }
+    </script>
+    <script>
+        if (userInfo === null) {
+            return `
+
+            `
+        }
+    </script>
+</body>
+
+</html>

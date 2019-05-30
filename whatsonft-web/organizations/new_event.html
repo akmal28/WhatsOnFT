@@ -1,28 +1,53 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="../css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="../css/style.css" rel="stylesheet">
+    <!-- Montserrat Font -->
     <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Montserrat&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css">
     <title>New Event</title>
 </head>
+
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">WhatsOnFT</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark special-color-dark">
+        <!-- Navbar brand -->
+        <a class="navbar-brand" href="../index.html">What's on FT ?</a>
+        <!-- Collapse button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+            aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-            <a class="nav-item nav-link" href="index.html">Home</a>
-            <a class="nav-item nav-link" href="#">Profile</a>
-            <a class="nav-item nav-link active" href="new_event.html">New Event</a>
-            <a class="nav-item nav-link" href="../logout.html">Logout</a>        
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse" id="basicExampleNav">
+            <!-- Links -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="new_event.html">New Event</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../logout.html">Logout</a>
+                </li>
+            </ul>
+            <!-- Links -->
         </div>
-        </div>
+        <!-- Collapsible content -->
     </nav>
+    <!-- Navbar -->
 
     <div class="container">
         <h1 style="text-align: center;margin-top: 20px;">Create a New Event</h1>
@@ -32,14 +57,14 @@
                 <form action="#" id="newEventForm">
                     <div class="form-group">
                         <label for="name">Event Name</label>
-                        <input type="text" class="form-control" id="name" placeholder="Enter name">                        
+                        <input type="text" class="form-control" id="name" placeholder="Enter name">
                     </div>
                     <div class="form-group">
                         <label for="eventType">Event Type</label>
                         <select class="form-control" id="eventType" onchange="changeType()">
                             <option value="" disabled="" selected="">---Select event type---</option>
                             <option value="Academic">Academic</option>
-                            <option value="NonAcademic">Non-Academic</option>                        
+                            <option value="NonAcademic">Non-Academic</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -56,7 +81,8 @@
                     </div>
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <textarea type="text" class="form-control" id="description" placeholder="Enter description"></textarea>
+                        <textarea type="text" class="form-control" id="description"
+                            placeholder="Enter description"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="date">Date</label>
@@ -77,38 +103,52 @@
 
     <script>
         const organizationInfo = localStorage.getItem("woftOrganizationInfo")
-        if(typeof organizationInfo == 'undefined' || organizationInfo == null){
+        if (typeof organizationInfo == 'undefined' || organizationInfo == null) {
             window.location.href = 'login.html'
         }
         console.log("current organization" + organizationInfo)
         const organizationInfoObj = JSON.parse(organizationInfo)
     </script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="../scripts/domain.js"></script>
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="../js/jquery-3.4.0.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="../js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="../js/mdb.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script> -->
+    <script src="../scripts/config.js"></script>
     <script src="../scripts/request/event.js"></script>
     <script>
-        function changeType(){
-            const eventType = $('#eventType').val()            
-            if(eventType == 'Academic'){
+        function changeType() {
+            const eventType = $('#eventType').val()
+            if (eventType == 'Academic') {
                 document.getElementById("eventCategory").disabled = true
-            }else{
+            } else {
                 document.getElementById("eventCategory").disabled = false
             }
         }
 
-        $(document).ready(()=>{
-            $('#newEventForm').submit(e=>{
+        $(document).ready(() => {
+            $('#newEventForm').submit(e => {
                 const name = $('#name').val()
                 const orgId = organizationInfoObj.id
                 const eventType = $('#eventType').val()
                 let eventCategory = ""
                 const description = $('#description').val()
-                const date = $("#date").val()       
-                if(eventType == 'Academic'){
+                const date = $("#date").val()
+                if (eventType == 'Academic') {
                     newEvent(name, orgId, eventType, eventCategory, description, date)
-                }else{
+                } else {
                     eventCategory = $('#eventCategory').val()
                     newEvent(name, orgId, eventType, eventCategory, description, date)
                 }
@@ -116,4 +156,5 @@
         })
     </script>
 </body>
+
 </html>

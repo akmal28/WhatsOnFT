@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Welcome to What's on FT !</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="../css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="../css/style.css" rel="stylesheet">
+    <!-- Montserrat Font -->
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Montserrat&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark special-color-dark">
+        <!-- Navbar brand -->
+        <a class="navbar-brand" href="index.html">What's on FT ?</a>
+        <!-- Collapse button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+            aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse" id="basicExampleNav">
+            <!-- Links -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+            </ul>
+            <!-- Links -->
+        </div>
+        <!-- Collapsible content -->
+    </nav>
+    <!--/.Navbar-->
+    <!-- Content -->
+    <div class="container">
+        <div class="main mt-5">
+            <h1>Register</h1>
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-md-6">
+                    <form action="javascript:registerNew();" method="POST" class="form-content">
+                        <div class="form-group">
+                            <label for="RegisterFormName">Name</label>
+                            <input type="text" id="RegisterFormName" class="form-control" placeholder="Enter your name">
+                        </div>
+                        <div class="form-group">
+                            <label for="RegisterFormUsername">Username</label>
+                            <input type="text" id="RegisterFormUsername" class="form-control mb-4"
+                                placeholder="Enter your username">
+                        </div>
+                        <div class="form-group">
+                            <label for="RegisterFormEmail">Email</label>
+                            <input type="email" id="RegisterFormEmail" class="form-control mb-4" placeholder="E-mail">
+                        </div>
+                        <div class="form-group">
+                            <label for="RegisterFormPassword">Password</label>
+                            <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">Minimal 6
+                                characters
+                                with 1 number and 1 uppercase & lowercase characters</small>
+                            <input type="password" id="RegisterFormPassword" class="form-control mb-4"
+                                placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock"
+                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}">
+                        </div>
+                        <div class="form-group">
+                            <label for="RegisterFormDepartment">Department</label>
+                            <select class="browser-default custom-select mb-4" id="RegisterFormDepartment">
+                                <option value="" disabled="" selected="">Choose your department</option>
+                                <option value="DTS">Departemen Teknik Sipil</option>
+                                <option value="DTM">Departemen Teknik Mesin</option>
+                                <option value="DTE">Departemen Teknik Elektro</option>
+                                <option value="DTMM">Departemen Teknik Metalurgi & Material</option>
+                                <option value="DA">Departemen Arsitektur</option>
+                                <option value="DTK">Departemen Teknik Kimia</option>
+                                <option value="DTI">Departemen Teknik Industri</option>
+                                <option value="PI">Program Internasional</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-info my-4 btn-block" type="submit">Register</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- Content End -->
+
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="../js/jquery-3.4.0.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="../js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="../js/mdb.min.js"></script>
+    <!-- Footer -->
+    <footer class="page-footer font-small special-color-dark fixed-bottom">
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">© 2018 Copyright:
+            <a href="https://MDBootstrap.com/education/bootstrap/">pizdec.tv</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+    <script src="../scripts/config.js"></script>
+    <script src="../scripts/request/user.js"></script>
+    <script>
+        function registerNew() {
+            const name = $('#RegisterFormName').val()
+            const username = $('#RegisterFormUsername').val()
+            const department = $('#RegisterFormDepartment').val()
+            const email = $('#RegisterFormEmail').val()
+            const password = $('#RegisterFormPassword').val()
+            RegisterUser(name, username, department, email, password)
+        }
+    </script>
+</body>
+
+</html>

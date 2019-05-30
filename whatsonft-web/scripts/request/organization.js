@@ -1,14 +1,14 @@
-function loginOrganization(email, password){
+function loginOrganization(email, password) {
     $.ajax({
-        url: domain+"/organizations/login",
+        url: proxy + "/organizations/login",
         type: "POST",
-        data: {email, password},
-        success: function(data){
+        data: { email, password },
+        success: function (data) {
             console.log(data)
             localStorage.setItem("woftOrganizationInfo", JSON.stringify(data))
             window.location.href = 'index.html'
         },
-        error: function(status){
+        error: function (status) {
             console.log("Error")
             console.log(status)
             alert("Login Failed!")

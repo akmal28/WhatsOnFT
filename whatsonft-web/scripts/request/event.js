@@ -1,13 +1,13 @@
-function getEventsByOrganization(orgId){
+function getEventsByOrganization(orgId) {
     $.ajax({
-        url: domain+"/organizations/"+orgId+"/events",
+        url: proxy + "/organizations/" + orgId + "/events",
         type: "GET",
         data: orgId,
-        success: function(data){
-            localStorage.setItem("woftEventsByOrgInfo", JSON.stringify(data))    
-            showEvents(data)    
+        success: function (data) {
+            localStorage.setItem("woftEventsByOrgInfo", JSON.stringify(data))
+            showEvents(data)
         },
-        error: function(status){
+        error: function (status) {
             console.log(status)
             alert("Failed to fetch data!")
         },
@@ -16,17 +16,17 @@ function getEventsByOrganization(orgId){
     })
 }
 
-function getEventById(eventId){
+function getEventById(eventId) {
     $.ajax({
-        url: domain+"/events/"+eventId,
+        url: proxy + "/events/" + eventId,
         type: "GET",
         data: eventId,
-        success: function(data){    
+        success: function (data) {
             localStorage.setItem("woftEventsByOrgInfo", JSON.stringify(data))
             event = new Event(data)
             $('#detail').append(event.eventDetail())
         },
-        error: function(status){
+        error: function (status) {
             console.log(status)
             alert("Error occured")
         },
@@ -35,16 +35,16 @@ function getEventById(eventId){
     })
 }
 
-function cancelEvent(id){
+function cancelEvent(id) {
     $.ajax({
-        url: domain+"/events/delete?id="+id,
+        url: proxy + "/events/delete?id=" + id,
         type: "DELETE",
         data: id,
-        success: function(){
+        success: function () {
             alert("Event deleted")
             window.location.href = 'index.html'
         },
-        error: function(status){
+        error: function (status) {
             console.log(status)
             alert("Error occured")
         },
@@ -53,16 +53,16 @@ function cancelEvent(id){
     })
 }
 
-function newEvent(name, organization, type, category, description, date){
+function newEvent(name, organization, type, category, description, date) {
     $.ajax({
-        url: domain+"/events/new",
+        url: proxy + "/events/new",
         type: "POST",
-        data: {name, organization, type, category, description, date},
-        success: function(data){
+        data: { name, organization, type, category, description, date },
+        success: function (data) {
             alert("Create event success!")
             window.location.href = 'index.html'
         },
-        error: function(status){
+        error: function (status) {
             console.log(status)
             alert("Error")
         },
@@ -71,12 +71,28 @@ function newEvent(name, organization, type, category, description, date){
     })
 }
 
-function showEvents(data){
+function showEvents(data) {
     $('#myevents').empty()
     data.forEach(eventObj => {
         event = new Event(eventObj)
         $('#myevents').append(event.getEvents())
     });
+}
+
+function showPublicEvents() {
+    $.ajax({
+        url: proxy + "/events",
+        type: "GET",
+        data: { name, organization, description, date, category },
+        success: function (data, status, jqXHR) {
+            localStorage.setItem("events", JSON.stringify(data))
+        },
+        error: function (jqXHR, status, errorThrown) {
+            console.log(jqXHR)
+        },
+        dataType: "JSON",
+        timeout: 5000
+    })
 }
 
 // function showEventDetail(data){

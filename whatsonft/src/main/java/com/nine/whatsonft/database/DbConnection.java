@@ -9,7 +9,7 @@ import java.sql.*;
  */
 public class DbConnection {
     private static final String USERNAME = "postgres";
-    private static final String PASSWORD = "memento56";
+    private static final String PASSWORD = "converse";
     private static final String CONN = "jdbc:postgresql://localhost:5432/whatsonft";
 
     /**
