@@ -2,6 +2,7 @@ package com.nine.whatsonft.controller;
 
 import com.nine.whatsonft.database.DatabaseUsers;
 import com.nine.whatsonft.models.Users;
+import org.apache.catalina.User;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
@@ -88,5 +89,17 @@ public class UsersController {
             e.printStackTrace();
         }
         return false;
+    }
+
+    @RequestMapping(value = "/users/update", method = RequestMethod.POST)
+    public Users updatePassword(@RequestParam (value = "id") int id,
+                                @RequestParam (value = "password") String password)
+    {
+        try {
+            return db.updatePassword(id, password);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

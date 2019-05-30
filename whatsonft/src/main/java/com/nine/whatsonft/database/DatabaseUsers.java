@@ -4,6 +4,8 @@ import com.nine.whatsonft.database.DbConnection;
 import com.nine.whatsonft.models.Users;
 
 import java.sql.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Class ini berfungsi untuk berinterkasi dengan table user pada database
@@ -86,5 +88,25 @@ public class DatabaseUsers extends DbConnection {
         posted.setInt(1, id);
         posted.executeUpdate();
         return true;
+    }
+
+    public Users updatePassword(int id, String password) throws SQLException{
+        PreparedStatement posted = conn.prepareStatement("UPDATE users SET password = (?) WHERE id = (?) RETURNING *");
+        String pattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,}$";
+        Pattern p = Pattern.compile(pattern);
+        Matcher m = p.matcher(password);
+        if(m.find()){
+            System.out.println("Password: " + m.group());
+            posted.setString(1, m.group());
+            posted.setInt(2, id);
+            ResultSet rs = posted.executeQuery();
+            while (rs.next()){
+                return new Users(rs.getInt("id"), rs.getString("name"), rs.getString("username"), rs.getString("department"), rs.getString("email"), rs.getString("password"));
+            }
+        }else{
+            System.out.println("Password: NULL");
+            throw new SQLException();
+        }
+        return null;
     }
 }

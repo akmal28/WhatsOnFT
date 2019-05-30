@@ -50,4 +50,5 @@ public class Attendant {
     public void setUser(int user) {
         this.user = user;
     }
+
 }

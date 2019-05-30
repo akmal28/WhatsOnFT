@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
-    <title>Home</title>
+    <title>Event Detail</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -16,7 +16,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="#">Home</a>
+            <a class="nav-item nav-link" href="index.html">Home</a>
             <a class="nav-item nav-link" href="#">Profile</a>
             <a class="nav-item nav-link" href="new_event.html">New Event</a>
             <a class="nav-item nav-link" href="../logout.html">Logout</a>        
@@ -25,31 +25,50 @@
     </nav>
 
     <div class="container">
-        <div id="welcome" style="text-align: center;margin-top: 20px;"></div>
-        <h3 style="text-align: center;">My Events:</h3>
+        <h1 style="text-align: center;margin-top: 20px;">Event Detail</h1>
         <div class="row">
-            <div id="myevents" class="myevents col-lg-12"></div>
+            <div class="col-sm-3"></div>
+            <div class="col-md-6">
+                <div id="detail"></div>
+                <button class="btn btn-danger" id="cancel" style="margin-top: 10px;">Cancel</button>
+            </div>
+            <div class="col-sm-3"></div>
         </div>
     </div>
 
+
+
+
     <script>
-        const organizationInfo = localStorage.getItem("woftOrganizationInfo")
-        if(typeof organizationInfo == 'undefined' || organizationInfo == null){
-            window.location.href = 'login.html'
-        }
-        console.log("current organization" + organizationInfo)
-        const organizationInfoObj = JSON.parse(organizationInfo)
+            const organizationInfo = localStorage.getItem("woftOrganizationInfo")
+            if(typeof organizationInfo == 'undefined' || organizationInfo == null){
+                window.location.href = 'login.html'
+            }
+            console.log("current organization" + organizationInfo)
+            const organizationInfoObj = JSON.parse(organizationInfo)
     </script>
-    <script src="../scripts/domain.js"></script>
-    <script src="../scripts/models/event.js"></script>
-    <script src="../scripts/request/event.js"></script>
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="../scripts/domain.js"></script>
+    <script src="../scripts/models/event.js"></script>
+    <script src="../scripts/request/event.js"></script>
     <script>
-        $(document).ready(()=>{
-            $('#welcome').append('<h1>Welcome, ' +organizationInfoObj.name+ '</h1>')
-            getEventsByOrganization(organizationInfoObj.id)
+        function getQueryVariable(variable)
+        {
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+            for (var i=0;i<vars.length;i++) {
+                    var pair = vars[i].split("=");
+                    if(pair[0] == variable){return pair[1];}
+            }
+            return(false);
+        }
+        const eventId = getQueryVariable("id") 
+        getEventById(eventId)
+        $('#cancel').click(e => {
+            cancelEvent(eventId)
         })
     </script>
 </body>

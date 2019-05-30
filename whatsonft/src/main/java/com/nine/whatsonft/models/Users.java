@@ -143,16 +143,7 @@ public class Users {
      * @param password
      */
     public void setPassword(String password) {
-        String pattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,}$";
-        Pattern p = Pattern.compile(pattern);
-        Matcher m = p.matcher(password);
-        if(m.find()){
-            System.out.println("Password: " + m.group());
-            this.password = password;
-        }else{
-            System.out.println("Password: NULL");
-            this.password = "NULL";
-        }
+        this.password = password;
     }
 
 }

@@ -16,11 +16,26 @@ class Event{
                 <h5 class="card-title">${this.name}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">by ${this.organizationObj.name}</h6>
                 <p class="card-text">${this.description}</p>
-                <a href="#" class="card-link">Detail</a>
+                <a href="../organizations/detail.html?id=${this.id}" class="card-link">Detail</a>
                 <a href="#" class="card-link">Update</a>
                 <a href="#" class="card-link">Finish</a>
             </div>
         </div>
         `    
+    }
+
+    eventDetail(){
+        return `
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"><strong>${this.name}</strong></h5>
+                <p class="card-text">Date: ${this.date}</p>
+                <p class="card-text">Type: ${this.eventType}</p>
+                <p class="card-text">Category: ${this.category}</p>
+                <p class="card-text">Description: ${this.description}</p>                
+                
+            </div>            
+        </div>        
+        `
     }
 }
